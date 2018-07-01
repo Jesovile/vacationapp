@@ -1,6 +1,7 @@
 import * as React from "react";
 import {Dropdown} from 'primereact/components/dropdown/Dropdown';
 import VacationRequest from "./Vacation/VacationRequest";
+import SupportRequest from "./Support/SupportRequest";
 
 export default class RequestCreate extends React.Component{
     constructor(props){
@@ -30,9 +31,15 @@ export default class RequestCreate extends React.Component{
     /*RENDERS*/
     renderRequestContent = () => {
         let result = null;
+
         if(this.state.requestType === "vacation"){
             result = <VacationRequest/>;
         }
+
+        if(this.state.requestType === "support"){
+            result = <SupportRequest/>
+        }
+
         return result;
     }
 

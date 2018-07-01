@@ -3,21 +3,22 @@ import {Calendar} from "primereact/components/calendar/Calendar";
 import {InputTextarea} from 'primereact/components/inputtextarea/InputTextarea';
 import {Dropdown} from 'primereact/components/dropdown/Dropdown';
 
+
 export default class VacationRequest extends React.Component {
     constructor(props) {
         super(props);
 
-        /*TODO fix hardcode state*/
         /*Init state*/
         this.state = {
             status: "New",
-            dateFrom: new Date(),
-            dateTo: new Date(),
+            dateFrom: null,
+            dateTo: null,
             reason: "",
             requesterComment: ""
         }
     }
 
+    /*TODO fix hardcode state*/
     reasonArray = [
         {label: 'Planned', value: 'Planned'},
         {label: 'Wedding', value: 'Wedding'},
@@ -48,7 +49,7 @@ export default class VacationRequest extends React.Component {
                 </div>
 
                 <div>
-                    <label htmlFor={'dateTo'}>Date From</label>
+                    <label htmlFor={'dateTo'}>Date To</label>
                     <Calendar
                         id={"dateTo"}
                         dateFormat={'dd/mm/yy'}
