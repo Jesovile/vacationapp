@@ -7,9 +7,9 @@ import "./style/flexbox.css";
 import 'primereact/resources/themes/omega/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
-import VacationRequest from "./components/Vacation/VacationRequest";
 import NavPanel from "./components/Navigation/NavPanel";
 import {Switch, Route} from "react-router-dom";
+import RequestCreate from "./components/Request/RequestCreate";
 
 class App extends Component {
   render() {
@@ -27,7 +27,7 @@ class App extends Component {
               {/*content*/}
               <Switch>
                   <Route exact path='/' component={EmployeeCard}/>
-                  <Route path='/vacationreq' component={VacationRequest}/>
+                  <Route path='/request' component={RequestCreate}/>
               </Switch>
           </div>
       );

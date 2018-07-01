@@ -15,7 +15,7 @@ export default class NavPanel extends React.Component{
                 <h2>Navigation</h2>
                 <ul>
                     <li><Link to='/'>My card</Link></li>
-                    <li><Link to='/vacationreq'>Vacation request</Link></li>
+                    <li><Link to='/request'>Create request</Link></li>
                 </ul>
             </div>
         );
