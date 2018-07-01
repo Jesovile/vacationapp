@@ -1,0 +1,26 @@
+html,
+body {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    /*TODO fix background color*/
+    background-color: blue;
+}
+
+.flex-container-stack{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.nav-bar{
+    background: hotpink;
+    width: 100px;
+}
