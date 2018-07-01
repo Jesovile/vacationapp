@@ -12,7 +12,7 @@ export default class RequestCreate extends React.Component{
         }
     }
 
-
+    /*CONSTANTS*/
     /*TODO fix this hardcode*/
     requestTypeOptions = [
         {label: "Vacation", value: "vacation"},
@@ -21,17 +21,19 @@ export default class RequestCreate extends React.Component{
         ]
 
 
+    /*HANDLERS*/
     commonOnChangeHandler = (value, propName) => {
         this.setState({[propName]: value});
     }
 
 
-    /*TODO why it isn't work (function isn't valid React child component)*/
+    /*RENDERS*/
     renderRequestContent = () => {
+        let result = null;
         if(this.state.requestType === "vacation"){
-            console.log(this.state.requestType);
-            return <VacationRequest/>;
+            result = <VacationRequest/>;
         }
+        return result;
     }
 
     render(){
@@ -46,8 +48,8 @@ export default class RequestCreate extends React.Component{
                     options={this.requestTypeOptions}
                 />
 
-                { this.state.requestType === "vacation" ? <VacationRequest/> : null}
-
+                {/*render specific request component*/}
+                {this.renderRequestContent()}
 
             </div>
         );
