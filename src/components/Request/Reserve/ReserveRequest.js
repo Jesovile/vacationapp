@@ -1,5 +1,7 @@
 import * as React from "react";
 import {Dropdown} from 'primereact/components/dropdown/Dropdown';
+import BackendProviderWrapper from "../../../utils/BackendProviderWrapper";
+import ReserveAsset from "./ReserveAsset";
 
 export default class ReserveRequest extends React.Component{
     constructor(props){
@@ -7,6 +9,9 @@ export default class ReserveRequest extends React.Component{
 
         /*Init state*/
         this.state = {assetType: ""};
+
+        /*Dependency Injection*/
+        this.provider = this.getBackendProvider();
     }
 
 
@@ -20,6 +25,13 @@ export default class ReserveRequest extends React.Component{
     ]
 
 
+    /*UTILS*/
+    /*TODO refactor this with true DI container (maybe with Redux) */
+    getBackendProvider = () => {
+        return new BackendProviderWrapper().getProvider();
+    }
+
+
     /*HANDLERS*/
     commonOnChangeHandler = (value, propName) => {
         this.setState({[propName]: value});
@@ -27,6 +39,19 @@ export default class ReserveRequest extends React.Component{
 
 
     /*RENDERS*/
+    renderAssets = (assetType) => {
+        if(assetType) {
+            let assetsArray = this.getBackendProvider().getReserveAsset(assetType);
+            return (
+                assetsArray.map((item, key) => (
+
+                    <ReserveAsset key={key} asset={item}/>
+                ))
+            );
+        } else return null;
+    }
+
+
     render(){
         return(
             <div>
@@ -40,6 +65,9 @@ export default class ReserveRequest extends React.Component{
                         onChange={(event) => this.commonOnChangeHandler(event.value, "assetType")}
                         options={this.assetTypes}
                     />
+
+                    {this.renderAssets(this.state.assetType)}
+
                 </div>
 
             </div>
