@@ -2,7 +2,7 @@
 /*TODO fix it with really backend provider implementation*/
 
 export default class BackendProviderStub {
-    /*TODO STUB fix hardcode*/
+    /*TODO STUB fix hardcode. Maybe use Map in this case*/
     constructor(){
         this.confRooms = [
             {id: "R1", capacity: 20, reservedFrames: [true, true, false, false, false, false, true, true, true, false, false, false]},
@@ -30,6 +30,24 @@ export default class BackendProviderStub {
         if(type === "sportHall") result = this.sportHalls;
         if(type === "grill") result = this.grills;
         return result;
+    }
+
+    /*reserve asset time frame*/
+    reserveAsset(type, id, frameIndex){
+        /*TODO refactor it with typeChecker separate function*/
+        let resultType = null;
+        /*TODO refactor it (as minimum with switch case)*/
+        if(type === "confRoom") resultType = this.confRooms;
+        if(type === "confHall") resultType = this.confHalls;
+        if(type === "sportHall") resultType = this.sportHalls;
+        if(type === "grill") resultType = this.grills;
+
+        let resultAsset = null;
+        for (let i=0; i< resultType.length; i++){
+            if(resultType[i].id === id) resultAsset = resultType[i];
+        }
+
+        resultAsset.reservedFrames[frameIndex] = !resultAsset.reservedFrames[frameIndex];
     }
 
 }

@@ -2,7 +2,7 @@ import * as React from "react";
 import ReserveAssetReservedFrame from "./ReserveAssetReservedFrame";
 
 /*TODO refactor it as stateless component*/
-export default class ReserveAsset extends React.Component{
+export default class ReserveAsset extends React.Component{/*HANDLERS*/
 
     /*RENDERS*/
     renderAssetReservedFrames = () => {
