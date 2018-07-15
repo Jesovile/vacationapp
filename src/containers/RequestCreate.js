@@ -4,7 +4,7 @@ import VacationRequest from "../components/Request/Vacation/VacationRequest";
 import SupportRequest from "../components/Request/Support/SupportRequest";
 import ReserveRequest from "../components/Request/Reserve/ReserveRequest";
 import {connect} from "react-redux";
-import {requestActionProducer} from "../actions/RequestActions";
+import {requestActionProducer, requestAddActionProducer} from "../actions/RequestActions";
 
 export class RequestCreate extends React.Component{
     constructor(props){
@@ -73,7 +73,7 @@ export class RequestCreate extends React.Component{
 
 function mapDispatchToProps(dispatch){
     return {
-        dispatchRequest: (request) => dispatch(requestActionProducer(request))
+        dispatchRequest: (request) => dispatch(requestAddActionProducer(request))
     }
 }
 

@@ -1,5 +1,6 @@
 import * as React from "react";
 import {connect} from "react-redux";
+import {requestDeleteActionProducer} from "../actions/RequestActions";
 
 export class RequestList extends React.Component{
 
@@ -7,10 +8,11 @@ export class RequestList extends React.Component{
         if(this.props.requests.length!=0) {
             return (
                 this.props.requests.map((item, index) => (
-                    <div key={index}>
+                    <div key={index} index={index}>
                         <label>{item.type}</label>
                         <label>{item.requester}</label>
                         <label>{item.status}</label>
+                        <button onClick={() => this.props.dispatchDelete(index)}>Cancel</button>
                     </div>
                 ))
             );
@@ -37,4 +39,10 @@ function mapStateToProps(state){
     }
 }
 
-export default connect(mapStateToProps)(RequestList);
+function mapDispatchToProps(dispatch){
+    return {
+        dispatchDelete: (index) => dispatch(requestDeleteActionProducer(index))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(RequestList);
