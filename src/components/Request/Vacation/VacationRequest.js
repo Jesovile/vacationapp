@@ -2,6 +2,7 @@ import * as React from "react";
 import {Calendar} from "primereact/components/calendar/Calendar";
 import {InputTextarea} from 'primereact/components/inputtextarea/InputTextarea';
 import {Dropdown} from 'primereact/components/dropdown/Dropdown';
+import CommonRequest from "../../../utils/CommonRequest";
 
 
 export default class VacationRequest extends React.Component {
@@ -10,7 +11,6 @@ export default class VacationRequest extends React.Component {
 
         /*Init state*/
         this.state = {
-            status: "New",
             dateFrom: null,
             dateTo: null,
             reason: "",
@@ -32,11 +32,6 @@ export default class VacationRequest extends React.Component {
         return(
             <div>
                 <h2>Vacation Request</h2>
-
-                <div>
-                    <label>Status</label>
-                    <label>{this.state.status}</label>
-                </div>
 
                 <div>
                     <label htmlFor={'dateFrom'}>Date From</label>
@@ -80,6 +75,9 @@ export default class VacationRequest extends React.Component {
                         cols={30}
                     />
                 </div>
+
+                {/*TODO fix this hardcode*/}
+                <button onClick={() => this.props.dispatchRequest(new CommonRequest(null, "vacation", "Eugene Jesovile", "New", this.state))}>Create Request</button>
 
             </div>
         );

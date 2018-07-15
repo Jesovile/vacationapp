@@ -9,7 +9,8 @@ import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
 import NavPanel from "./components/Navigation/NavPanel";
 import {Switch, Route} from "react-router-dom";
-import RequestCreate from "./components/Request/RequestCreate";
+import RequestCreate from "./containers/RequestCreate";
+import RequestList from "./containers/RequestList";
 
 class App extends Component {
   render() {
@@ -26,8 +27,9 @@ class App extends Component {
 
               {/*content*/}
               <Switch>
-                  <Route exact path='/' component={EmployeeCard}/>
+                  <Route exact path='/' render={() => <EmployeeCard/>}/>
                   <Route path='/request' component={RequestCreate}/>
+                  <Route path={'/requestList'} component={RequestList}/>
               </Switch>
           </div>
       );

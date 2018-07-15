@@ -1,10 +1,12 @@
 import * as React from "react";
 import {Dropdown} from 'primereact/components/dropdown/Dropdown';
-import VacationRequest from "./Vacation/VacationRequest";
-import SupportRequest from "./Support/SupportRequest";
-import ReserveRequest from "./Reserve/ReserveRequest";
+import VacationRequest from "../components/Request/Vacation/VacationRequest";
+import SupportRequest from "../components/Request/Support/SupportRequest";
+import ReserveRequest from "../components/Request/Reserve/ReserveRequest";
+import {connect} from "react-redux";
+import {requestActionProducer} from "../actions/RequestActions";
 
-export default class RequestCreate extends React.Component{
+export class RequestCreate extends React.Component{
     constructor(props){
         super(props);
 
@@ -30,19 +32,20 @@ export default class RequestCreate extends React.Component{
 
 
     /*RENDERS*/
+    /*TODO refactor with switch case*/
     renderRequestContent = () => {
         let result = null;
 
         if(this.state.requestType === "vacation"){
-            result = <VacationRequest/>;
+            result = <VacationRequest dispatchRequest={this.props.dispatchRequest}/>;
         }
 
         if(this.state.requestType === "support"){
-            result = <SupportRequest/>
+            result = <SupportRequest dispatchRequest={this.props.dispatchRequest}/>
         }
 
         if(this.state.requestType === "reserve"){
-            result = <ReserveRequest/>
+            result = <ReserveRequest dispatchRequest={this.props.dispatchRequest}/>
         }
 
         return result;
@@ -66,5 +69,12 @@ export default class RequestCreate extends React.Component{
             </div>
         );
     }
-
 }
+
+function mapDispatchToProps(dispatch){
+    return {
+        dispatchRequest: (request) => dispatch(requestActionProducer(request))
+    }
+}
+
+export default connect(null, mapDispatchToProps)(RequestCreate)

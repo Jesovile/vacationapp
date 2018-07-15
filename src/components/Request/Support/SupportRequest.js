@@ -3,6 +3,7 @@ import {Dropdown} from 'primereact/components/dropdown/Dropdown';
 import {Calendar} from "primereact/components/calendar/Calendar";
 import {InputTextarea} from 'primereact/components/inputtextarea/InputTextarea';
 import {InputText} from 'primereact/components/inputtext/InputText';
+import CommonRequest from "../../../utils/CommonRequest";
 
 export default class SupportRequest extends React.Component{
     constructor(props) {
@@ -132,6 +133,9 @@ export default class SupportRequest extends React.Component{
                         cols={30}
                     />
                 </div>
+
+                {/*TODO fix this hardcode*/}
+                <button onClick={() => this.props.dispatchRequest(new CommonRequest(null, "support", "Eugene Jesovile", "New", this.state))}>Create Request</button>
 
 
             </div>
