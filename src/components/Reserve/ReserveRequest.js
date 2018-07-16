@@ -1,6 +1,6 @@
 import * as React from "react";
 import {Dropdown} from 'primereact/components/dropdown/Dropdown';
-import BackendProviderWrapper from "../../../utils/BackendProviderWrapper";
+import BackendProviderWrapper from "../../utils/BackendProviderWrapper";
 import ReserveAsset from "./ReserveAsset";
 
 export default class ReserveRequest extends React.Component{

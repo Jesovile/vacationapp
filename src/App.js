@@ -11,6 +11,7 @@ import NavPanel from "./components/Navigation/NavPanel";
 import {Switch, Route} from "react-router-dom";
 import RequestCreate from "./containers/RequestCreate";
 import RequestList from "./containers/RequestList";
+import ReserveRequest from "./components/Reserve/ReserveRequest";
 
 class App extends Component {
   render() {
@@ -28,6 +29,7 @@ class App extends Component {
               {/*content*/}
               <Switch>
                   <Route exact path='/' render={() => <EmployeeCard/>}/>
+                  <Route path={'/reserve'} component={ReserveRequest}/>
                   <Route path='/request' component={RequestCreate}/>
                   <Route path={'/requestList'} component={RequestList}/>
               </Switch>
