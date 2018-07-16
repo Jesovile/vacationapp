@@ -16,7 +16,6 @@ export default class SupportRequest extends React.Component{
             requestedItemType: "",
             requestedItem: "",
             urgency: "",
-            dateTo: null,
             reason: "",
             requesterComment: ""
         }
