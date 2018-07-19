@@ -2,7 +2,7 @@ import * as React from "react";
 import {Dropdown} from 'primereact/components/dropdown/Dropdown';
 import VacationRequest from "../components/Request/Vacation/VacationRequest";
 import SupportRequest from "../components/Request/Support/SupportRequest";
-import ReserveRequest from "../components/Reserve/ReserveRequest";
+import ReserveRequest from "./ReserveRequest";
 import {connect} from "react-redux";
 import {requestActionProducer, requestAddActionProducer} from "../actions/RequestActions";
 
@@ -17,7 +17,7 @@ export class RequestCreate extends React.Component{
     }
 
     /*CONSTANTS*/
-    /*TODO fix this hardcode*/
+    /*TODO fix this hardcode with dictionaries*/
     requestTypeOptions = [
         {label: "Vacation", value: "vacation"},
         {label: "Support", value: "support"}

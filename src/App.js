@@ -11,7 +11,7 @@ import NavPanel from "./components/Navigation/NavPanel";
 import {Switch, Route} from "react-router-dom";
 import RequestCreate from "./containers/RequestCreate";
 import RequestList from "./containers/RequestList";
-import ReserveRequest from "./components/Reserve/ReserveRequest";
+import ReserveRequest from "./containers/ReserveRequest";
 
 class App extends Component {
   render() {

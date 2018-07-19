@@ -1,35 +1,25 @@
 import * as React from "react";
+import {connect} from "react-redux";
 import {Dropdown} from 'primereact/components/dropdown/Dropdown';
-import BackendProviderWrapper from "../../utils/BackendProviderWrapper";
-import ReserveAsset from "./ReserveAsset";
+import ReserveAsset from "../components/Reserve/ReserveAsset";
 
-export default class ReserveRequest extends React.Component{
+export class ReserveRequest extends React.Component{
     constructor(props){
         super(props);
 
         /*Init state*/
         this.state = {assetType: ""};
-
-        /*Dependency Injection*/
-        this.provider = this.getBackendProvider();
     }
 
 
     /*CONSTANTS*/
-    /*TODO fix hardcode*/
+    /*TODO fix hardcode with dictionaries*/
     assetTypes = [
-        {label: "Conference Room", value: "confRoom"},
-        {label: "Conference Hall", value: "confHall"},
-        {label: "Sport Hall", value: "sportHall"},
-        {label: "Grill place", value: "grill"}
+        {label: "Conference Room", value: "confRooms"},
+        {label: "Conference Hall", value: "confHalls"},
+        {label: "Sport Hall", value: "sportHalls"},
+        {label: "Grill place", value: "grills"}
     ]
-
-
-    /*UTILS*/
-    /*TODO refactor this with true DI container (maybe with Redux) */
-    getBackendProvider = () => {
-        return new BackendProviderWrapper().getProvider();
-    }
 
 
     /*HANDLERS*/
@@ -41,7 +31,7 @@ export default class ReserveRequest extends React.Component{
     /*RENDERS*/
     renderAssets = (assetType) => {
         if(assetType) {
-            let assetsArray = this.getBackendProvider().getReserveAsset(assetType);
+            let assetsArray = this.props.reservePlaces[assetType];
             return (
                 assetsArray.map((item, key) => (
 
@@ -65,9 +55,7 @@ export default class ReserveRequest extends React.Component{
                         onChange={(event) => this.commonOnChangeHandler(event.value, "assetType")}
                         options={this.assetTypes}
                     />
-
                     {this.renderAssets(this.state.assetType)}
-
                 </div>
 
             </div>
@@ -75,3 +63,11 @@ export default class ReserveRequest extends React.Component{
     }
 
 }
+
+function mapStateToProps(state){
+    return {
+        reservePlaces: state.reservePlaces
+    }
+}
+
+export default connect(mapStateToProps)(ReserveRequest);
