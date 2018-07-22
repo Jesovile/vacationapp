@@ -11,7 +11,7 @@ export default class NavPanel extends React.Component{
 
     render(){
         return(
-            <div >
+            <div className={'Navigation'}>
                 <h2>Navigation</h2>
                 <ul>
                     <li><Link to='/'>My card</Link></li>

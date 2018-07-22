@@ -8,11 +8,11 @@ export default class ReserveAssetReservedFrame extends React.Component{
         let currentReservedFrame = this.props.reservedFrame;
         if(currentReservedFrame) {
             return (
-                <label style={{backgroundColor: 'green', marginRight: '5px'}}>free</label>
+                <div className={'ReserveFrame free'}>free</div>
             );
         } else {
             return (
-                <label style={{backgroundColor: 'red', marginRight: '5px'}}>reserved</label>
+                <label className={'ReserveFrame reserved'}>reserved</label>
             );
         }
     }

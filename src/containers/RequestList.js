@@ -19,16 +19,15 @@ export class RequestList extends React.Component{
     }
 
 
+    /*TODO refactor it with normal table*/
     renderRequestList = () => {
         if(this.props.requests.length!=0) {
             return (
                 this.props.requests.map((item, index) => (
-                    <div>
-                        <div key={index} index={index} onClick={() => this.showModal(item.content)}>
-                            <label>{item.type}</label>
-                            <label>{item.requester}</label>
-                            <label>{item.status}</label>
-                        </div>
+                    <div className={'flex_container row'} key={index} index={index}>
+                        <div className={'RequestItem'} onClick={() => this.showModal(item.content)}>{item.type}</div>
+                        <div className={'RequestItem'} onClick={() => this.showModal(item.content)}>{item.requester}</div>
+                        <div className={'RequestItem'} onClick={() => this.showModal(item.content)}>{item.status}</div>
                         <button onClick={() => this.props.dispatchDelete(index)}>Cancel</button>
                     </div>
                 ))
@@ -42,11 +41,18 @@ export class RequestList extends React.Component{
         return(
             <div>
                 <h2>My Requests</h2>
+                <hr/>
 
-                {this.renderRequestList()}
-
+                <div className={'flex_container column'}>
+                    <div className={'flex_container row'}>
+                        <div className={'RequestItem header'}>Type</div>
+                        <div className={'RequestItem header'}>Requester</div>
+                        <div className={'RequestItem header'}>Status</div>
+                        <div className={'RequestItem'}></div>
+                    </div>
+                    {this.renderRequestList()}
+                </div>
                 <ModalContentView closeModal={this.closeModal} show={this.state.showModal} content={this.state.modalContent}/>
-
             </div>
         );
     }

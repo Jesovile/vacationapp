@@ -12,7 +12,6 @@ export default class SupportRequest extends React.Component{
         /*TODO fix hardcode state*/
         /*Init state*/
         this.state = {
-            status: "New",
             requestedItemType: "",
             requestedItem: "",
             urgency: "",
@@ -44,9 +43,10 @@ export default class SupportRequest extends React.Component{
         if(this.state.urgency == "toDate"){
             /*TODO implement it as stateless inner component*/
             result =
-                <div>
-                    <label htmlFor={'dateTo'}>Date To</label>
+                <div className={'flex_container row'}>
+                    <label className={'Label'} htmlFor={'dateTo'}>Date To</label>
                     <Calendar
+                        className={'Content'}
                         id={"dateTo"}
                         dateFormat={'dd/mm/yy'}
                         value={this.state.dateTo}
@@ -70,14 +70,10 @@ export default class SupportRequest extends React.Component{
             <div>
                 <h2>Support Request</h2>
 
-                <div>
-                    <label>Status</label>
-                    <label>{this.state.status}</label>
-                </div>
-
-                <div>
-                    <label htmlFor={"requestedItemType"}>Equipment type</label>
+                <div className={'flex_container row'}>
+                    <label className={'Label'} htmlFor={"requestedItemType"}>Equipment type</label>
                     <Dropdown
+                        className={'Content'}
                         id={'requestedItemType'}
                         value={this.state.requestedItemType}
                         onChange={(event) => this.commonOnChangeHandler(event.value, "requestedItemType")}
@@ -85,9 +81,10 @@ export default class SupportRequest extends React.Component{
                     />
                 </div>
 
-                <div>
-                    <label htmlFor={"requestedItem"}>What do you need?</label>
+                <div className={'flex_container row'}>
+                    <label className={'Label'} htmlFor={"requestedItem"}>What do you need?</label>
                     <InputText
+                        className={'Content'}
                         id="requestedItem"
                         type="text"
                         size="30"
@@ -96,9 +93,10 @@ export default class SupportRequest extends React.Component{
                     />
                 </div>
 
-                <div>
-                    <label htmlFor={"reason"}>Why do you need?</label>
+                <div className={'flex_container row'}>
+                    <label className={'Label'} htmlFor={"reason"}>Why do you need?</label>
                     <InputText
+                        className={'Content'}
                         id="reason"
                         type="text"
                         size="30"
@@ -107,9 +105,10 @@ export default class SupportRequest extends React.Component{
                     />
                 </div>
 
-                <div>
-                    <label htmlFor={"urgency"}>How fast</label>
+                <div className={'flex_container row'}>
+                    <label className={'Label'} htmlFor={"urgency"}>How fast</label>
                     <Dropdown
+                        className={'Content'}
                         id={'urgency'}
                         value={this.state.urgency}
                         onChange={(event) => this.commonOnChangeHandler(event.value, "urgency")}
@@ -120,9 +119,10 @@ export default class SupportRequest extends React.Component{
                 {/*render date input if urgency is toDate*/}
                 {this.showToDateInput()}
 
-                <div>
-                    <label htmlFor={"requesterComment"}>Comment</label>
+                <div className={'flex_container row'}>
+                    <label className={'Label'} htmlFor={"requesterComment"}>Comment</label>
                     <InputTextarea
+                        className={'Content'}
                         id={"requesterComment"}
                         value={this.state.requesterComment}
                         onChange={(event) => this.commonOnChangeHandler(event.target.value, "requesterComment")}

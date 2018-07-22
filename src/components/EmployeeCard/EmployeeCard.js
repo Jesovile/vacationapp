@@ -9,6 +9,7 @@ export default class EmployeeCard extends React.Component{
         return(
             <div>
                 <h2>My card</h2>
+                <hr/>
                 {/*<EmployeePhoto/>*/}
                 <EmployeeInfo/>
             </div>

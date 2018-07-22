@@ -1,34 +1,24 @@
 import * as React from "react";
-import ReserveAssetReservedFrame from "./ReserveAssetReservedFrame";
+import ReservedFramesView from "./ReservedFramesView";
 
 /*TODO refactor it as stateless component*/
-export default class ReserveAsset extends React.Component{/*HANDLERS*/
+export default class ReserveAsset extends React.Component{
 
     /*RENDERS*/
-    renderAssetReservedFrames = () => {
-        let currentFrames = this.props.asset.reservedFrames;
-        return(
-            currentFrames.map((item, key) => (
-                <ReserveAssetReservedFrame key ={key} frameIdex={key} reservedFrame={item}/>
-            ))
-        );
-    }
-
     render(){
         let currentAsset = this.props.asset;
         return (
-            <div>
-                <div>
-                    <label>ID=</label>
-                    <label>{currentAsset.id}</label>
+            <div className={'ReserveAsset'}>
+                <div className={'flex_container row'}>
+                    <label className={'Label reserve'}>ID</label>
+                    <div className={'Content review'}>{currentAsset.id}</div>
                 </div>
-                <div>
-                    <label>Capacity=</label>
-                    <label>{currentAsset.capacity}</label>
+                <div className={'flex_container row'}>
+                    <label className={'Label reserve'}>Capacity</label>
+                    <div className={'Content review'}>{currentAsset.capacity}</div>
                 </div>
-                <div>
-                    <label>Frames=</label>
-                    {this.renderAssetReservedFrames()}
+                <div className={'flex_container row'}>
+                    <ReservedFramesView reservedFrames={this.props.asset.reservedFrames}/>
                 </div>
 
             </div>

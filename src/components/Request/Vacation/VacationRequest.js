@@ -33,9 +33,10 @@ export default class VacationRequest extends React.Component {
             <div>
                 <h2>Vacation Request</h2>
 
-                <div>
-                    <label htmlFor={'dateFrom'}>Date From</label>
+                <div className={'flex_container row'}>
+                    <label className={'Label'} htmlFor={'dateFrom'}>Date From</label>
                     <Calendar
+                        className={'Content'}
                         id={"dateFrom"}
                         dateFormat={'dd/mm/yy'}
                         value={this.state.dateFrom}
@@ -43,9 +44,10 @@ export default class VacationRequest extends React.Component {
                     />
                 </div>
 
-                <div>
-                    <label htmlFor={'dateTo'}>Date To</label>
+                <div className={'flex_container row'}>
+                    <label className={'Label'} htmlFor={'dateTo'}>Date To</label>
                     <Calendar
+                        className={'Content'}
                         id={"dateTo"}
                         dateFormat={'dd/mm/yy'}
                         value={this.state.dateTo}
@@ -53,9 +55,10 @@ export default class VacationRequest extends React.Component {
                     />
                 </div>
 
-                <div>
-                    <label htmlFor={"reason"}>Reason</label>
+                <div className={'flex_container row'}>
+                    <label className={'Label'} htmlFor={"reason"}>Reason</label>
                     <Dropdown
+                        className={'Content'}
                         id={'reason'}
                         value={this.state.reason}
                         onChange={(event) => this.commonOnChangeHandler(event.value, "reason")}
@@ -63,9 +66,10 @@ export default class VacationRequest extends React.Component {
                     />
                 </div>
 
-                <div>
-                    <label htmlFor={"requesterComment"}>Comment</label>
+                <div className={'flex_container row'}>
+                    <label className={'Label'} htmlFor={"requesterComment"}>Comment</label>
                     <InputTextarea
+                        className={'Content'}
                         id={"requesterComment"}
                         value={this.state.requesterComment}
                         onChange={(event) => this.commonOnChangeHandler(event.target.value, "requesterComment")}

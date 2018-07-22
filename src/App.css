@@ -12,6 +12,7 @@
   height: 150px;
   padding: 20px;
   color: white;
+  text-align: center;
 }
 
 .App-title {
@@ -25,4 +26,93 @@
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+
+/*custom*/
+.Label {
+  margin: 1%;
+  color: #8E8585;
+  width: 15%;
+}
+
+.Label.reserve {
+  width: 30%;
+}
+
+.Content {
+  flex: 1;
+}
+
+.Content.review {
+  margin: 1%;
+}
+
+
+.Navigation {
+  width: 10%;
+  background-color: #f1f1f1;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+li a {
+  display: block;
+  color: #000;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+/* Change the link color on hover */
+li a:hover {
+  background-color: #555;
+  color: white;
+}
+
+.ReserveAsset {
+  width: 30%;
+  flex-direction: column;
+  padding: 1%;
+}
+
+.ReserveFrame {
+  margin: 2px;
+}
+
+.ReserveFrame.free {
+  background-color: green;
+}
+
+.ReserveFrame.reserved {
+  background-color: red;
+}
+
+.RequestItem {
+  margin: 1%;
+  width: 20%;
+}
+
+.RequestItem.header {
+  color: #8E8585;
+}
+
+.content_container{
+  margin: 0% 2% 2% 2%;
+  width: 40%;
+}
+
+.flex_container {
+  display: flex;
+}
+
+.row {
+  flex-direction: row;
+}
+
+.column{
+  flex-direction: column;
 }

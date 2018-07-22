@@ -46,15 +46,19 @@ export class ReserveRequest extends React.Component{
         return(
             <div>
                 <h2>Reserve Request</h2>
+                <hr/>
 
-                <div>
-                    <label htmlFor={"assetType"}>Asset type</label>
+                <div className={'flex_container row'}>
+                    <label className={'Label'} htmlFor={"assetType"}>Place type</label>
                     <Dropdown
+                        className={'Content'}
                         id={'assetType'}
                         value={this.state.assetType}
                         onChange={(event) => this.commonOnChangeHandler(event.value, "assetType")}
                         options={this.assetTypes}
                     />
+                </div>
+                <div className={'flex_container row'}>
                     {this.renderAssets(this.state.assetType)}
                 </div>
 

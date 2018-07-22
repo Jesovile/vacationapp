@@ -2,7 +2,6 @@ import * as React from "react";
 import {Dropdown} from 'primereact/components/dropdown/Dropdown';
 import VacationRequest from "../components/Request/Vacation/VacationRequest";
 import SupportRequest from "../components/Request/Support/SupportRequest";
-import ReserveRequest from "./ReserveRequest";
 import {connect} from "react-redux";
 import {requestActionProducer, requestAddActionProducer} from "../actions/RequestActions";
 
@@ -50,13 +49,17 @@ export class RequestCreate extends React.Component{
         return(
             <div>
                 <h2>Request</h2>
+                <hr/>
 
-                <label>Request type</label>
-                <Dropdown
-                    value={this.state.requestType}
-                    onChange={(event) => this.commonOnChangeHandler(event.value, "requestType")}
-                    options={this.requestTypeOptions}
-                />
+                <div className={'flex_container row'}>
+                    <div className={'Label'}>Request type</div>
+                    <Dropdown
+                        className={'Content'}
+                        value={this.state.requestType}
+                        onChange={(event) => this.commonOnChangeHandler(event.value, "requestType")}
+                        options={this.requestTypeOptions}
+                    />
+                </div>
 
                 {/*render specific request component*/}
                 {this.renderRequestContent()}

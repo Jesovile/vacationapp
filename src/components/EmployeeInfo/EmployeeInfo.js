@@ -17,17 +17,17 @@ export default class EmployeeInfo extends React.Component{
         /*REFACTOR maybe, it's <ul>\<li> ???*/
         return(
             <div>
-               <div>
-                   <label>Full Name</label>
-                   <label>{this.state.fullname}</label>
+               <div className={'flex_container row'}>
+                   <div className={'Label'}>Full Name</div>
+                   <div className={'Content review'}>{this.state.fullname}</div>
                </div>
-                <div>
-                    <label>Full Name</label>
-                    <label>{this.state.fullname}</label>
+                <div className={'flex_container row'}>
+                    <div className={'Label'}>Position</div>
+                    <div className={'Content review'}>{this.state.position}</div>
                 </div>
-                <div>
-                    <label>Full Name</label>
-                    <label>{this.state.fullname}</label>
+                <div className={'flex_container row'}>
+                    <div className={'Label'}>Department</div>
+                    <div className={'Content review'}>{this.state.department}</div>
                 </div>
             </div>
         );
