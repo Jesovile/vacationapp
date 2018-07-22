@@ -4,6 +4,9 @@ import {Calendar} from "primereact/components/calendar/Calendar";
 import {InputTextarea} from 'primereact/components/inputtextarea/InputTextarea';
 import {InputText} from 'primereact/components/inputtext/InputText';
 import CommonRequest from "../../../utils/CommonRequest";
+import * as Validation from "../../../utils/Validations";
+import ModalWarning from "../Review/ModalWarning";
+import ModalSuccess from "../Review/ModalSuccess";
 
 export default class SupportRequest extends React.Component{
     constructor(props) {
@@ -11,16 +14,20 @@ export default class SupportRequest extends React.Component{
 
         /*TODO fix hardcode state*/
         /*Init state*/
-        this.state = {
-            requestedItemType: "",
-            requestedItem: "",
-            urgency: "",
-            reason: "",
-            requesterComment: ""
-        }
+        this.state = this.initState;
     }
 
     /*CONSTANTS*/
+    initState = {
+        requestedItemType: "",
+        requestedItem: "",
+        urgency: "",
+        reason: "",
+        requesterComment: "",
+        showWarning: false,
+        showSuccess: false
+
+    }
     /*TODO fix hardcode*/
     requestedItemTypes = [
         {label: 'Hardware', value: 'hardware'},
@@ -40,7 +47,7 @@ export default class SupportRequest extends React.Component{
     /*UTILS*/
     showToDateInput = () => {
         let result = null;
-        if(this.state.urgency == "toDate"){
+        if(this.state.urgency === "toDate"){
             /*TODO implement it as stateless inner component*/
             result =
                 <div className={'flex_container row'}>
@@ -57,10 +64,43 @@ export default class SupportRequest extends React.Component{
         return result;
     }
 
+    /*TODO refactor with type implementation*/
+    closeModal = (type) => {
+        switch(type){
+            case "warning":
+                this.setState({showWarning: false});
+                break;
+            case "success":
+                this.setState({showSuccess: false});
+                break;
+        }
+    }
+
 
     /*HANDLERS*/
     commonOnChangeHandler = (value, propName) => {
         this.setState({[propName]: value});
+    }
+
+    createRequestButtonHandler = () => {
+        /*content for validation*/
+        let content = {
+            requestedItemType: this.state.requestedItemType,
+            requestedItem: this.state.requestedItem,
+            urgency: this.state.urgency,
+            reason: this.state.reason,
+            requesterComment: this.state.requesterComment
+        }
+        if(this.state.urgency === "toDate"){content.dateTo = this.state.dateTo}
+
+        /*validate content and show success or warning modal dialog*/
+        if(Validation.validateAllFields(content)) {
+            /*TODO refactor requester and status in next sprints*/
+            this.props.dispatchRequest(new CommonRequest(null, "support", "Eugene Jesovile", "New", content));
+            this.setState({...this.initState, showSuccess: true});
+        } else {
+            this.setState({showWarning: true});
+        }
     }
 
 
@@ -133,9 +173,19 @@ export default class SupportRequest extends React.Component{
                     />
                 </div>
 
-                {/*TODO fix this hardcode*/}
-                <button onClick={() => this.props.dispatchRequest(new CommonRequest(null, "support", "Eugene Jesovile", "New", this.state))}>Create Request</button>
+                {/*Modal dialogs*/}
+                <ModalWarning
+                    show={this.state.showWarning}
+                    message={"Please, fill in all the fields on the form"}
+                    closeModal={() => {this.closeModal("warning")}}
+                />
+                <ModalSuccess
+                    show={this.state.showSuccess}
+                    message={"Request is created successfully"}
+                    closeModal={() => {this.closeModal("success")}}
+                />
 
+                <button onClick={this.createRequestButtonHandler}>Create Request</button>
 
             </div>
         );

@@ -45,7 +45,7 @@ export default class ModalContentView extends React.Component{
     render(){
         return(
             <div style={this.props.show ? this.visible : this.notVisible}>
-                <h2>Modal</h2>
+                <h2>Request Details</h2>
                 <hr/>
 
                 {this.renderContent()}

@@ -3,6 +3,9 @@ import {Calendar} from "primereact/components/calendar/Calendar";
 import {InputTextarea} from 'primereact/components/inputtextarea/InputTextarea';
 import {Dropdown} from 'primereact/components/dropdown/Dropdown';
 import CommonRequest from "../../../utils/CommonRequest";
+import * as Validation from "../../../utils/Validations";
+import ModalWarning from "../Review/ModalWarning";
+import ModalSuccess from "../Review/ModalSuccess";
 
 
 export default class VacationRequest extends React.Component {
@@ -10,13 +13,20 @@ export default class VacationRequest extends React.Component {
         super(props);
 
         /*Init state*/
-        this.state = {
-            dateFrom: null,
-            dateTo: null,
-            reason: "",
-            requesterComment: ""
-        }
+        this.state = this.initState;
     }
+
+    /*Initial state*/
+    initState = {
+        dateFrom: null,
+        dateTo: null,
+        reason: "",
+        requesterComment: "",
+        showWarning: false,
+        showSuccess: false
+    }
+
+
 
     /*TODO fix hardcode state*/
     reasonArray = [
@@ -27,6 +37,37 @@ export default class VacationRequest extends React.Component {
     ];
 
     commonOnChangeHandler = (value, propName) => this.setState({[propName]: value});
+
+    /*TODO refactor with type implementation*/
+    closeModal = (type) => {
+        switch(type){
+            case "warning":
+                this.setState({showWarning: false});
+                break;
+            case "success":
+                this.setState({showSuccess: false});
+                break;
+        }
+    }
+
+    createRequestButtonHandler = () => {
+        /*content for validation*/
+        let content = {
+            dateFrom: this.state.dateFrom,
+            dateTo: this.state.dateTo,
+            reason: this.state.reason,
+            requesterComment: this.state.requesterComment
+        }
+
+        /*validate content and show success or warning modal dialog*/
+        if(Validation.validateAllFields(content)) {
+            /*TODO refactor requester and status in next sprints*/
+            this.props.dispatchRequest(new CommonRequest(null, "vacation", "Eugene Jesovile", "New", content));
+            this.setState({...this.initState, showSuccess: true});
+        } else {
+            this.setState({showWarning: true});
+        }
+    }
 
     render(){
         return(
@@ -80,8 +121,19 @@ export default class VacationRequest extends React.Component {
                     />
                 </div>
 
-                {/*TODO fix this hardcode*/}
-                <button onClick={() => this.props.dispatchRequest(new CommonRequest(null, "vacation", "Eugene Jesovile", "New", this.state))}>Create Request</button>
+                {/*Modal dialogs*/}
+                <ModalWarning
+                    show={this.state.showWarning}
+                    message={"Please, fill in all the fields on the form"}
+                    closeModal={() => {this.closeModal("warning")}}
+                />
+                <ModalSuccess
+                    show={this.state.showSuccess}
+                    message={"Request is created successfully"}
+                    closeModal={() => {this.closeModal("success")}}
+                />
+
+                <button onClick={this.createRequestButtonHandler}>Create Request</button>
 
             </div>
         );
