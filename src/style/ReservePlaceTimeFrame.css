@@ -1,0 +1,13 @@
+/*ReservePlaceTimeFrame component styling*/
+
+.ReserveFrame {
+    margin: 2px;
+}
+
+.ReserveFrame.free {
+    background-color: green;
+}
+
+.ReserveFrame.reserved {
+    background-color: red;
+}

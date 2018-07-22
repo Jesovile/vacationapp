@@ -1,6 +1,7 @@
 import * as React from "react";
 import {connect} from "react-redux";
 import {requestDeleteActionProducer} from "../actions/RequestActions";
+import "../style/RequestList.css"
 import ModalContentView from "../components/Request/Review/ModalContentView";
 
 export class RequestList extends React.Component{

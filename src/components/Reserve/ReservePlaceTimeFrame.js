@@ -1,7 +1,8 @@
 import * as React from "react";
+import "../../style/ReservePlaceTimeFrame.css"
 
 /*TODO refactor as stateless component*/
-export default class ReserveAssetReservedFrame extends React.Component{
+export default class ReservePlaceTimeFrame extends React.Component{
 
     /*RENDERS*/
     render(){

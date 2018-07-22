@@ -1,0 +1,7 @@
+/*RevervePlace component styling*/
+
+.ReservePlace {
+    width: 30%;
+    flex-direction: column;
+    padding: 1%;
+}

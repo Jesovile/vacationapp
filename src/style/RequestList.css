@@ -1,0 +1,10 @@
+/*RequestList component styling*/
+
+.RequestItem {
+    margin: 1%;
+    width: 20%;
+}
+
+.RequestItem.header {
+    color: #8E8585;
+}

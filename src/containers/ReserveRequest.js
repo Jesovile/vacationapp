@@ -1,7 +1,7 @@
 import * as React from "react";
 import {connect} from "react-redux";
 import {Dropdown} from 'primereact/components/dropdown/Dropdown';
-import ReserveAsset from "../components/Reserve/ReserveAsset";
+import ReservePlace from "../components/Reserve/ReservePlace";
 
 export class ReserveRequest extends React.Component{
     constructor(props){
@@ -35,7 +35,7 @@ export class ReserveRequest extends React.Component{
             return (
                 assetsArray.map((item, key) => (
 
-                    <ReserveAsset key={key} asset={item}/>
+                    <ReservePlace key={key} asset={item}/>
                 ))
             );
         } else return null;

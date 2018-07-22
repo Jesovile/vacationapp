@@ -1,14 +1,15 @@
 import * as React from "react";
 import ReservedFramesView from "./ReservedFramesView";
+import "../../style/ReservedPlace.css"
 
 /*TODO refactor it as stateless component*/
-export default class ReserveAsset extends React.Component{
+export default class ReservePlace extends React.Component{
 
     /*RENDERS*/
     render(){
         let currentAsset = this.props.asset;
         return (
-            <div className={'ReserveAsset'}>
+            <div className={'ReservePlace'}>
                 <div className={'flex_container row'}>
                     <label className={'Label reserve'}>ID</label>
                     <div className={'Content review'}>{currentAsset.id}</div>

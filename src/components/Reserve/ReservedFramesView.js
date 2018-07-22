@@ -1,5 +1,6 @@
 import * as React from "react";
-import ReserveAssetReservedFrame from "./ReserveAssetReservedFrame";
+import "../../style/ReservedFramesView.css"
+import ReservePlaceTimeFrame from "./ReservePlaceTimeFrame";
 
 
 export default class ReservedFramesView extends React.Component{
@@ -55,7 +56,7 @@ export default class ReservedFramesView extends React.Component{
             currentTimes.map((item, index) => (
                 <div className={'flex_container row'} key={index}>
                     <div className={'Label reserve'}>{this.formatPartOfDate(item.getHours()) + ":" + this.formatPartOfDate(item.getMinutes())}</div>
-                    <ReserveAssetReservedFrame reservedFrame={this.props.reservedFrames[index]}/>
+                    <ReservePlaceTimeFrame reservedFrame={this.props.reservedFrames[index]}/>
                     {this.renderReserveButton(this.props.reservedFrames[index])}
                 </div>
             ))
