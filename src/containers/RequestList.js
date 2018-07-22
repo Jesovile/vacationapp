@@ -61,7 +61,7 @@ export class RequestList extends React.Component{
 
 function mapStateToProps(state){
     return {
-        requests: state.requests
+        requests: state.requests.emplRequests
     }
 }
 
