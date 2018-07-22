@@ -2,7 +2,7 @@ import * as React from "react";
 
 export default class ModalContentView extends React.Component{
 
-    /*TODO fix it with css-classes*/
+    /*CONSTANTS*/
     visible = {
         position: 'fixed',
         backgroundColor: '#f1f1f1',
@@ -22,6 +22,7 @@ export default class ModalContentView extends React.Component{
     }
 
 
+    /*RENDERS*/
     renderContent = () => {
         if(this.props.content) {
             let content = this.props.content;

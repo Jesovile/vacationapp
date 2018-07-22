@@ -6,6 +6,8 @@ import CommonRequest from "../../../utils/CommonRequest";
 import * as Validation from "../../../utils/Validations";
 import ModalWarning from "../Review/ModalWarning";
 import ModalSuccess from "../Review/ModalSuccess";
+import * as ModalType from "../../../utils/types/ModalDialogTypes";
+import * as RequestType from "../../../utils/types/RequestTypes";
 
 
 export default class VacationRequest extends React.Component {
@@ -16,6 +18,8 @@ export default class VacationRequest extends React.Component {
         this.state = this.initState;
     }
 
+
+    /*CONSTANTS*/
     /*Initial state*/
     initState = {
         dateFrom: null,
@@ -26,9 +30,7 @@ export default class VacationRequest extends React.Component {
         showSuccess: false
     }
 
-
-
-    /*TODO fix hardcode state*/
+    /*TODO fix with dictionary*/
     reasonArray = [
         {label: 'Planned', value: 'Planned'},
         {label: 'Wedding', value: 'Wedding'},
@@ -36,19 +38,22 @@ export default class VacationRequest extends React.Component {
         {label: 'Custom', value: 'Custom'}
     ];
 
-    commonOnChangeHandler = (value, propName) => this.setState({[propName]: value});
 
-    /*TODO refactor with type implementation*/
+    /*UTILS*/
     closeModal = (type) => {
         switch(type){
-            case "warning":
+            case ModalType.WARNING:
                 this.setState({showWarning: false});
                 break;
-            case "success":
+            case ModalType.SUCCESS:
                 this.setState({showSuccess: false});
                 break;
         }
     }
+
+
+    /*HANDLERS*/
+    commonOnChangeHandler = (value, propName) => this.setState({[propName]: value});
 
     createRequestButtonHandler = () => {
         /*content for validation*/
@@ -62,13 +67,15 @@ export default class VacationRequest extends React.Component {
         /*validate content and show success or warning modal dialog*/
         if(Validation.validateAllFields(content)) {
             /*TODO refactor requester and status in next sprints*/
-            this.props.dispatchRequest(new CommonRequest(null, "vacation", "Eugene Jesovile", "New", content));
+            this.props.dispatchRequest(new CommonRequest(null, RequestType.VACATION, "Eugene Jesovile", "New", content));
             this.setState({...this.initState, showSuccess: true});
         } else {
             this.setState({showWarning: true});
         }
     }
 
+
+    /*RENDERS*/
     render(){
         return(
             <div>
@@ -125,12 +132,12 @@ export default class VacationRequest extends React.Component {
                 <ModalWarning
                     show={this.state.showWarning}
                     message={"Please, fill in all the fields on the form"}
-                    closeModal={() => {this.closeModal("warning")}}
+                    closeModal={() => {this.closeModal(ModalType.WARNING)}}
                 />
                 <ModalSuccess
                     show={this.state.showSuccess}
                     message={"Request is created successfully"}
-                    closeModal={() => {this.closeModal("success")}}
+                    closeModal={() => {this.closeModal(ModalType.SUCCESS)}}
                 />
 
                 <button onClick={this.createRequestButtonHandler}>Create Request</button>

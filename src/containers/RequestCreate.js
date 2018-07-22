@@ -4,6 +4,7 @@ import VacationRequest from "../components/Request/Vacation/VacationRequest";
 import SupportRequest from "../components/Request/Support/SupportRequest";
 import {connect} from "react-redux";
 import {requestActionProducer, requestAddActionProducer} from "../actions/RequestActions";
+import * as RequestType from "../utils/types/RequestTypes";
 
 export class RequestCreate extends React.Component{
     constructor(props){
@@ -18,8 +19,8 @@ export class RequestCreate extends React.Component{
     /*CONSTANTS*/
     /*TODO fix this hardcode with dictionaries*/
     requestTypeOptions = [
-        {label: "Vacation", value: "vacation"},
-        {label: "Support", value: "support"}
+        {label: "Vacation", value: RequestType.VACATION},
+        {label: "Support", value: RequestType.SUPPORT}
     ]
 
 
@@ -34,11 +35,11 @@ export class RequestCreate extends React.Component{
     renderRequestContent = () => {
         let result = null;
 
-        if(this.state.requestType === "vacation"){
+        if(this.state.requestType === RequestType.VACATION){
             result = <VacationRequest dispatchRequest={this.props.dispatchRequest}/>;
         }
 
-        if(this.state.requestType === "support"){
+        if(this.state.requestType === RequestType.SUPPORT){
             result = <SupportRequest dispatchRequest={this.props.dispatchRequest}/>
         }
 

@@ -2,7 +2,8 @@ import * as React from "react";
 
 export default class ModalWarning extends React.Component {
 
-    /*TODO fix it with css-classes*/
+    /*CONSTANTS*/
+    /* TODO refactor it with ModalTemplate*/
     visible = {
         position: 'fixed',
         backgroundColor: '#f1f1f1',
@@ -21,6 +22,8 @@ export default class ModalWarning extends React.Component {
         display: 'none'
     }
 
+
+    /*RENDERS*/
     /*TODO add styling for message*/
     renderMessage = (message) => {
         return (

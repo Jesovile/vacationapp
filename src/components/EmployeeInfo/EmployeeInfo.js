@@ -13,8 +13,6 @@ export default class EmployeeInfo extends React.Component{
     }
 
     render(){
-        /*todo fix style*/
-        /*REFACTOR maybe, it's <ul>\<li> ???*/
         return(
             <div>
                <div className={'flex_container row'}>

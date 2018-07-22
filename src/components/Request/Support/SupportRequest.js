@@ -7,12 +7,13 @@ import CommonRequest from "../../../utils/CommonRequest";
 import * as Validation from "../../../utils/Validations";
 import ModalWarning from "../Review/ModalWarning";
 import ModalSuccess from "../Review/ModalSuccess";
+import * as ModalType from "../../../utils/types/ModalDialogTypes";
+import * as RequestType from "../../../utils/types/RequestTypes";
 
 export default class SupportRequest extends React.Component{
     constructor(props) {
         super(props);
 
-        /*TODO fix hardcode state*/
         /*Init state*/
         this.state = this.initState;
     }
@@ -28,7 +29,7 @@ export default class SupportRequest extends React.Component{
         showSuccess: false
 
     }
-    /*TODO fix hardcode*/
+    /*TODO fix with dictionary*/
     requestedItemTypes = [
         {label: 'Hardware', value: 'hardware'},
         {label: 'Software', value: 'software'},
@@ -64,13 +65,12 @@ export default class SupportRequest extends React.Component{
         return result;
     }
 
-    /*TODO refactor with type implementation*/
     closeModal = (type) => {
         switch(type){
-            case "warning":
+            case ModalType.WARNING:
                 this.setState({showWarning: false});
                 break;
-            case "success":
+            case ModalType.SUCCESS:
                 this.setState({showSuccess: false});
                 break;
         }
@@ -96,7 +96,7 @@ export default class SupportRequest extends React.Component{
         /*validate content and show success or warning modal dialog*/
         if(Validation.validateAllFields(content)) {
             /*TODO refactor requester and status in next sprints*/
-            this.props.dispatchRequest(new CommonRequest(null, "support", "Eugene Jesovile", "New", content));
+            this.props.dispatchRequest(new CommonRequest(null, RequestType.SUPPORT, "Eugene Jesovile", "New", content));
             this.setState({...this.initState, showSuccess: true});
         } else {
             this.setState({showWarning: true});
@@ -177,12 +177,12 @@ export default class SupportRequest extends React.Component{
                 <ModalWarning
                     show={this.state.showWarning}
                     message={"Please, fill in all the fields on the form"}
-                    closeModal={() => {this.closeModal("warning")}}
+                    closeModal={() => {this.closeModal(ModalType.WARNING)}}
                 />
                 <ModalSuccess
                     show={this.state.showSuccess}
                     message={"Request is created successfully"}
-                    closeModal={() => {this.closeModal("success")}}
+                    closeModal={() => {this.closeModal(ModalType.SUCCESS)}}
                 />
 
                 <button onClick={this.createRequestButtonHandler}>Create Request</button>

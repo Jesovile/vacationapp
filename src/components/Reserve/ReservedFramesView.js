@@ -12,7 +12,6 @@ export default class ReservedFramesView extends React.Component{
         this.state = {
             reserveDate: new Date(), //date to reserve place
             startHour: 8, //hour workday starts from
-            framesNumber: 12 //number of frames in one workday
         }
     }
 
@@ -38,7 +37,6 @@ export default class ReservedFramesView extends React.Component{
         } else return null;
     }
 
-    /*TODO refactor it with good implementation*/
     renderTimeFrames = () => {
         let currentTimeStamp = this.state.reserveDate;
         currentTimeStamp.setHours(this.state.startHour,0);
@@ -65,7 +63,7 @@ export default class ReservedFramesView extends React.Component{
 
     render(){
         /*TODO refactor this stub*/
-        let currentDate = new Date();
+        let currentDate = this.state.reserveDate;
 
         return(
             <div style={{width:'100%'}}>
