@@ -73,6 +73,7 @@ export default class SupportRequest extends React.Component{
             case ModalType.SUCCESS:
                 this.setState({showSuccess: false});
                 break;
+            default: console.error("Undefined modal type");
         }
     }
 

@@ -22,7 +22,7 @@ export class RequestList extends React.Component{
 
     /*TODO refactor it with normal table*/
     renderRequestList = () => {
-        if(this.props.requests.length!=0) {
+        if(this.props.requests.length !== 0) {
             return (
                 this.props.requests.map((item, index) => (
                     <div className={'flex_container row'} key={index} index={index}>

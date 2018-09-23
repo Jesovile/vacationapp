@@ -7,7 +7,7 @@ export default class EmployeePhoto extends React.Component{
         /*todo fix style*/
         return(
             <div className={'flex-container'} style={{backgroundColor: 'black'}}>
-                <img src={ava} height={"100%"} width={"100%"}></img>
+                <img src={ava} alt={"Employee pic"} height={"100%"} width={"100%"}></img>
             </div>
         );
     }

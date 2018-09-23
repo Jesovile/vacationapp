@@ -48,6 +48,7 @@ export default class VacationRequest extends React.Component {
             case ModalType.SUCCESS:
                 this.setState({showSuccess: false});
                 break;
+            default: console.error("Undefined modal type");
         }
     }
 

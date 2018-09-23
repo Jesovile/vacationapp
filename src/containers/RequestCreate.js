@@ -3,7 +3,7 @@ import {Dropdown} from 'primereact/components/dropdown/Dropdown';
 import VacationRequest from "../components/Request/Vacation/VacationRequest";
 import SupportRequest from "../components/Request/Support/SupportRequest";
 import {connect} from "react-redux";
-import {requestActionProducer, requestAddActionProducer} from "../actions/RequestActions";
+import {requestAddActionProducer} from "../actions/RequestActions";
 import * as RequestType from "../utils/types/RequestTypes";
 
 export class RequestCreate extends React.Component{
