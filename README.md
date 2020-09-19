@@ -1,3 +1,5 @@
+(It's my first React-application. It statys here by historical reasons too :-) )
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
